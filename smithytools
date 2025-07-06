@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smithy Tools Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Roboto', sans-serif; background-color: #111; color: #eee; margin: 0; padding: 0; }
+    header { background-color: #ff6600; padding: 20px; text-align: center; color: white; }
+    .container { max-width: 1200px; margin: 30px auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+    .tool { background: #222; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(255,102,0,0.4); }
+    .tool h2 { color: #ff6600; }
+    .price { font-weight: bold; }
+    .verified a { color: #00ff99; text-decoration: none; }
+    .payment-info { background: #333; padding: 10px; border-radius: 6px; border-left: 4px solid #ff6600; margin-bottom: 10px; }
+    .download-btn { background-color: #ff6600; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; text-decoration: none; display: inline-block; font-weight: bold; }
+    footer { text-align: center; padding: 20px; background-color: #ff6600; color: white; }
+    input[type=password] { padding: 6px; border-radius: 5px; border: none; width: 90%; margin-top: 10px; }
+    .review { margin-top: 10px; color: #ccc; font-style: italic; animation: fadeIn 1s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body>
+<header>
+  <h1>🔥 Smithy Tools Store</h1>
+  <p>✅ Verified Users Only – DM <a href="https://t.me/smithydeveloper" style="color:white;">@smithydeveloper</a> to unlock</p>
+</header>
+<div class="container" id="tools-container"></div>
+
+<script>
+const tools = [
+  { title: "EX4 Unpacker Pro", desc: "Decompile and analyze EX4 (MetaTrader) files to recover source code.", price: "$60", file: "files/EX4_Unpacker_Pro.zip", pass: "EX4Unpacker123", review: "⭐️⭐️⭐️⭐️⭐️ Helped me recover my lost EA code." },
+  { title: "APK Analyzer Pro", desc: "Inspect and extract APK files, analyze app structure, and explore Android apps.", price: "$100", file: "files/APK_Analyzer_Pro.zip", pass: "ApkAnalyzerPro123", review: "⭐️⭐️⭐️⭐️⭐️ Excellent tool for app analysis!" },
+  { title: "GameMod Builder", desc: "Create modded versions of Android/PC games by injecting new behavior.", price: "$75", file: "files/GameMod_Builder.zip", pass: "GameModBuilder123", review: "⭐️⭐️⭐️⭐️ Easy to use and powerful." },
+  { title: "Phone SpyX Viewer", desc: "Monitor SMS, calls, and location logs from remote devices.", price: "$100", file: "files/Phone_SpyX_Viewer.zip", pass: "SpyXViewer123", review: "⭐️⭐️⭐️⭐️ Used for tracking corporate devices." },
+  { title: "Social TrackSuite", desc: "Track user activity across platforms like Instagram, Facebook, TikTok.", price: "$80", file: "files/Social_TrackSuite.zip", pass: "TrackSuite123", review: "⭐️⭐️⭐️⭐️⭐️ Accurate insights." },
+  { title: "InstaKill Pro", desc: "Temporarily disable/block Instagram accounts via internal methods.", price: "$60", file: "files/InstaKill_Pro.zip", pass: "InstaKillPro123", review: "⭐️⭐️⭐️ Effective tool." },
+  { title: "FTK Version 8.1", desc: "Advanced forensics toolkit used to analyze digital evidence and recover data.", price: "$95", file: "files/FTK_8.1.zip", pass: "FTKtool123", review: "⭐️⭐️⭐️⭐️⭐️ Trusted in forensic investigations." },
+  { title: "Cloud Crack Agent", desc: "Bypass authentication systems and gain access to protected cloud services and APIs.", price: "$130", file: "files/Cloud_Crack_Agent.zip", pass: "CloudCrack123", review: "⭐⭐⭐⭐⭐ Extremely useful for cloud penetration testing." },
+  { title: "iOS Decompiler", desc: "Reverse iOS apps to extract and view source logic from binaries.", price: "$120", file: "files/iOS_Decompiler.zip", pass: "iOSDecompiler123", review: "⭐⭐⭐⭐ Powerful tool for mobile analysis." },
+  { title: "Unity Dumper", desc: "Dump Unity3D game files and extract assets or logic for analysis or modding.", price: "$75", file: "files/Unity_Dumper.zip", pass: "UnityDump123", review: "⭐⭐⭐⭐⭐ Essential for Unity reverse engineering!" },
+  { title: "Browser Cookie Extractor", desc: "Extract login sessions and cookies from browsers for session reuse or analysis.", price: "$70", file: "files/Browser_Cookie_Extractor.zip", pass: "CookieExtract123", review: "⭐⭐⭐⭐ Helped me recover saved sessions easily." },
+  { title: "Account Deleter v2", desc: "Automate account removal on multiple platforms with precision.", price: "$50", file: "files/Account_Deleter_v2.zip", pass: "AccDeleter123", review: "⭐️⭐️⭐️⭐️ Helped me clean up old accounts." },
+  { title: "DLL Injection Kit", desc: "Inject custom DLLs into Windows apps for modding or debugging.", price: "$85", file: "files/DLL_Injection_Kit.zip", pass: "DLLInject123", review: "⭐️⭐️⭐️⭐️⭐️ Perfect for cheat developers." }
+];
+
+function renderTools() {
+  const container = document.getElementById('tools-container');
+  tools.forEach((tool, index) => {
+    const id = 'tool-' + index;
+    const html = `
+      <div class="tool">
+        <h2>${tool.title}</h2>
+        <p class="description">${tool.desc}</p>
+        <p class="price">${tool.price}</p>
+        <p class="verified"><a href="https://t.me/smithydeveloper">✅ Verified Users Only – DM @smithydeveloper to unlock</a></p>
+        <p class="payment-info">💳 PayPal | 🪙 Crypto | 🎁 Gift Cards</p>
+        <input type="password" placeholder="Enter PIN" id="pin-${id}" />
+        <p id="error-${id}" style="color:red; display:none;">❌ Incorrect PIN</p>
+        <a class="download-btn" id="dl-${id}" href="${tool.file}" style="display:none;" download>✅ Download</a>
+        <button class="download-btn" onclick="unlock('${id}', '${tool.pass}')">🔐 Unlock</button>
+        <p class="review">${tool.review}</p>
+      </div>
+    `;
+    container.innerHTML += html;
+  });
+}
+
+function unlock(id, correctPin) {
+  const pin = document.getElementById('pin-' + id).value;
+  const err = document.getElementById('error-' + id);
+  const link = document.getElementById('dl-' + id);
+  if (pin === correctPin) {
+    link.style.display = 'inline-block';
+    err.style.display = 'none';
+  } else {
+    err.style.display = 'block';
+    link.style.display = 'none';
+  }
+}
+
+renderTools();
+</script>
+
+<footer>
+  <p>&copy; 2025 Smithy Tools | Contact on Telegram: <a href="https://t.me/smithydeveloper" target="_blank" style="color:white;">@smithydeveloper</a></p>
+</footer>
+</body>
+</html>

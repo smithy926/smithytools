@@ -12,20 +12,27 @@
     .tool { background: #222; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(255,102,0,0.4); }
     .tool h2 { color: #ff6600; }
     .price { font-weight: bold; }
-    .verified a { color: #00ff99; text-decoration: none; }
+    .verified a { color: #ff9900; text-decoration: none; }
     .payment-info { background: #333; padding: 10px; border-radius: 6px; border-left: 4px solid #ff6600; margin-bottom: 10px; }
     .download-btn { background-color: #ff6600; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; text-decoration: none; display: inline-block; font-weight: bold; }
     footer { text-align: center; padding: 20px; background-color: #ff6600; color: white; }
     input[type=password] { padding: 6px; border-radius: 5px; border: none; width: 90%; margin-top: 10px; }
-    .review { margin-top: 10px; color: #ccc; font-style: italic; animation: fadeIn 1s ease-in; }
+    .review { margin-top: 10px; color: #ffa64d; font-style: italic; animation: fadeIn 1s ease-in; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   </style>
 </head>
 <body>
+
 <header>
+  <img src="jfh.JPG" alt="Smithy Tools Logo" style="height: 80px; margin-bottom: 10px; border-radius: 12px;">
   <h1>🔥 Smithy Tools Store</h1>
-  <p>✅ Verified Users Only – DM <a href="https://t.me/smithydeveloper" style="color:white;">@smithydeveloper</a> to unlock</p>
+  <p>Advanced Private Sector Tools – Reserved for Specialists</p>
+  <p>✅ Verified Users Only – DM <a class="telegram-link" href="https://t.me/smithydeveloper">@smithydeveloper</a> to unlock</p>
+  <img src="https://pg-p.ctme.caltech.edu/wp-content/uploads/sites/4/2024/04/Software-Testing-Tools.jpg" 
+       alt="Software Tools Banner" 
+       style="width: 100%; max-width: 900px; display: block; margin: 20px auto; border-radius: 12px;" />
 </header>
+
 <div class="container" id="tools-container"></div>
 
 <script>
@@ -84,7 +91,9 @@ renderTools();
 </script>
 
 <footer>
-  <p>&copy; 2025 Smithy Tools | Contact on Telegram: <a href="https://t.me/smithydeveloper" target="_blank" style="color:white;">@smithydeveloper</a></p>
+  <p>&copy; 2025 Smithy Tools | Contact on Telegram: 
+    <a href="https://t.me/smithydeveloper" target="_blank" style="color:white;">@smithydeveloper</a>
+  </p>
 </footer>
 </body>
 </html>
